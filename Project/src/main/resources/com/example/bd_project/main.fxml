@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bd_project.Controller">
+   <children>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Adres">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="225.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="Dodaj">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="880.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="390.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                             <children>
+                                                <Label text="Miejscowość" />
+                                                <TextField fx:id="addAddressCity" />
+                                                <Label layoutX="390.0" layoutY="10.0" text="Kod pocztowy" />
+                                                <TextField fx:id="addAddressPostalCode" layoutX="346.0" layoutY="36.0" />
+                                                <Label layoutX="390.0" layoutY="71.0" text="Ulica" />
+                                                <TextField fx:id="addAddressStreet" layoutX="346.0" layoutY="97.0" />
+                                                <Label layoutX="390.0" layoutY="132.0" text="Numer budynku" />
+                                                <TextField fx:id="addAddressBuilding" layoutX="346.0" layoutY="158.0" />
+                                                <Button mnemonicParsing="false" onAction="#addAddressButtonOnAction" text="Dodaj" />
+                                                <Label fx:id="addressErrorLabel" layoutX="438.0" layoutY="193.0" text="Error label" textFill="RED" visible="false" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab onSelectionChanged="#showAddressTableOnAction" text="Baza">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="addressTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="C1" />
+                                              <TableColumn prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
+                                       </children></AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Dostawca">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="225.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <tabs>
+                              <Tab text="Dodaj">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="880.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="390.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                             <children>
+                                                <Label text="Nazwa" />
+                                                <TextField fx:id="addVendorName" />
+                                                <Label layoutX="390.0" layoutY="10.0" text="ID adres" />
+                                                <TextField fx:id="addVendorIdAddress" layoutX="346.0" layoutY="36.0" />
+                                                <Button mnemonicParsing="false" onAction="#addVendorButtonOnAction" text="Dodaj" />
+                                                <Label fx:id="vendorErrorLabel" text="Error label" textFill="RED" visible="false" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showVendorTableOnAction" text="Baza">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="vendorTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Klient">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="225.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <tabs>
+                              <Tab text="Dodaj">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="880.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="390.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                             <children>
+                                                <Label text="Imię" />
+                                                <TextField fx:id="addClientFirstName" />
+                                                <Label layoutX="390.0" layoutY="10.0" text="Nazwisko" />
+                                                <TextField fx:id="addClientLastName" layoutX="346.0" layoutY="36.0" />
+                                                <Label layoutX="460.0" layoutY="71.0" text="ID adres" />
+                                                <TextField fx:id="addClientIdAddress" layoutX="406.0" layoutY="97.0" />
+                                                <Label layoutX="460.0" layoutY="167.0" text="Email" />
+                                                <TextField fx:id="addClientEmail" layoutX="406.0" layoutY="193.0" />
+                                                <Label layoutX="460.0" layoutY="228.0" text="Numer telefonu" />
+                                                <TextField fx:id="addClientPhone" layoutX="406.0" layoutY="254.0" />
+                                                <Button mnemonicParsing="false" onAction="#addClientButtonOnAction" text="Dodaj" />
+                                                <Label fx:id="clientErrorLabel" text="Error label" textFill="RED" visible="false" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showClientTableOnAction" text="Baza">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="clientTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Pracownik">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="225.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <tabs>
+                              <Tab text="Dodaj">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="880.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="390.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                             <children>
+                                                <Label text="Imię" />
+                                                <TextField fx:id="addEmployeeFirstName" />
+                                                <Label layoutX="390.0" layoutY="10.0" text="Nazwisko" />
+                                                <TextField fx:id="addEmployeeLastName" layoutX="346.0" layoutY="36.0" />
+                                                <Label layoutX="460.0" layoutY="71.0" text="Stanowisko" />
+                                                <TextField fx:id="addEmployeeRole" layoutX="406.0" layoutY="97.0" />
+                                                <Label layoutX="460.0" layoutY="71.0" text="ID adres" />
+                                                <TextField fx:id="addEmployeeIdAddress" layoutX="406.0" layoutY="97.0" />
+                                                <Label layoutX="460.0" layoutY="167.0" text="Email" />
+                                                <TextField fx:id="addEmployeeEmail" layoutX="406.0" layoutY="193.0" />
+                                                <Label layoutX="460.0" layoutY="228.0" text="Numer telefonu" />
+                                                <TextField fx:id="addEmployeePhone" layoutX="406.0" layoutY="254.0" />
+                                                <Label layoutX="439.0" layoutY="315.0" text="Numer konta bankowego" />
+                                                <TextField fx:id="addEmployeeAccount" layoutX="406.0" layoutY="341.0" />
+                                                <Button mnemonicParsing="false" onAction="#addEmployeeButtonOnAction" text="Dodaj" />
+                                                <Label fx:id="employeeErrorLabel" text="Error label" textFill="RED" visible="false" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showEmployeeTableOnAction" text="Baza">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="employeeTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showHighestRevenueEmployeeTableOnAction" text="Pracownicy według nawiększej sprzedaży">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="highestRevenueEmployeeTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Produkt">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="225.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <tabs>
+                              <Tab text="Dodaj">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="880.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="390.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                             <children>
+                                                <Label layoutX="460.0" layoutY="71.0" text="Nazwa" />
+                                                <TextField fx:id="addProductName" layoutX="406.0" layoutY="97.0" />
+                                                <Label text="Cena bazowa" />
+                                                <TextField fx:id="addProductPrice" />
+                                                <Label layoutX="390.0" layoutY="10.0" text="Stawka VAT" />
+                                                <TextField fx:id="addProductVatRate" layoutX="346.0" layoutY="36.0" />
+                                                <Label layoutX="460.0" layoutY="71.0" text="ID dostawca" />
+                                                <TextField fx:id="addProductIdVendor" layoutX="406.0" layoutY="97.0" />
+                                                <Button mnemonicParsing="false" onAction="#addProductButtonOnAction" text="Dodaj" />
+                                                <Label fx:id="productErrorLabel" text="Error label" textFill="RED" visible="false" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showProductTableOnAction" text="Baza">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="productTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showHighestRevenueProductTableOnAction" text="Produkty według wygenerowanego przychodu">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="highestRevenueProductTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showNeededASAPProductTableOnAction" text="Produkty do zamówienia ASAP">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="neededASAPProductTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showTaxByVATRateTableOnAction" text="Podatek do zapłacenia według stawki VAT">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="taxByVATRateTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="StanMagazynowy">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="225.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <tabs>
+                              <Tab text="Dodaj">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="880.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="390.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                             <children>
+                                                <Label layoutX="460.0" layoutY="71.0" text="ID produkt" />
+                                                <TextField fx:id="addAvailabilityIdProduct" layoutX="406.0" layoutY="97.0" />
+                                                <Label text="Ilość w magazynie" />
+                                                <TextField fx:id="addAvailabilityQuantity" />
+                                                <Button mnemonicParsing="false" onAction="#addAvailabilityButtonOnAction" text="Dodaj lub zmień" />
+                                                <Label fx:id="availabilityErrorLabel" text="Error label" textFill="RED" visible="false" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showAvailabilityTableOnAction" text="Baza">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="availabilityTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Kod rabatowy">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="225.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <tabs>
+                              <Tab text="Dodaj">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="880.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="390.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                             <children>
+                                                <Label layoutX="460.0" layoutY="71.0" text="Kod" />
+                                                <TextField fx:id="addPromoCodeCode" layoutX="406.0" layoutY="97.0" />
+                                                <Label text="Stawka procentowa" />
+                                                <TextField fx:id="addPromoCodePercent" />
+                                                <Label layoutX="390.0" layoutY="10.0" text="Kwota rabatu" />
+                                                <TextField fx:id="addPromoCodeAmount" layoutX="346.0" layoutY="36.0" />
+                                                <Label layoutX="460.0" layoutY="71.0" text="Limit użyć kodu" />
+                                                <TextField fx:id="addPromoCodeLimit" layoutX="406.0" layoutY="97.0" />
+                                                <Label text="Wykorzystano razy" />
+                                                <TextField fx:id="addPromoCodeUsed" />
+                                                <Label layoutX="428.0" layoutY="289.0" text="ID pracownika tworzącego kod" />
+                                                <TextField fx:id="addPromoCodeIdEmployee" layoutX="406.0" layoutY="315.0" />
+                                                <Button mnemonicParsing="false" onAction="#addPromoCodeButtonOnAction" text="Dodaj" />
+                                                <Label fx:id="promoCodeErrorLabel" text="Error label" textFill="RED" visible="false" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showPromoCodeTableOnAction" text="Baza">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="promoCodeTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showPromoAmountPerPromoCodeTableOnAction" text="Łączna kwota rabatów według kodu">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="promoAmountPerPromoCodeTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Koszyk">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="225.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <tabs>
+                              <Tab text="Dodaj">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="880.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="390.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                             <children>
+                                                <Label layoutX="460.0" layoutY="71.0" text="ID klienta" />
+                                                <TextField fx:id="addCartIdClient" layoutX="406.0" layoutY="97.0" />
+                                                <Button mnemonicParsing="false" onAction="#addCartButtonOnAction" text="Dodaj" />
+                                                <Label fx:id="cartErrorLabel" text="Error label" textFill="RED" visible="false" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="Dodaj do koszyka">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="880.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="390.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                             <children>
+                                                <Label layoutX="460.0" layoutY="71.0" text="ID Klienta" />
+                                                <TextField fx:id="addCartProductIdClient" layoutX="406.0" layoutY="97.0" />
+                                                <Label layoutX="455.0" layoutY="10.0" text="ID produkt" />
+                                                <TextField fx:id="addCartProductIdProduct" layoutX="406.0" layoutY="36.0" />
+                                                <Label layoutX="455.0" layoutY="10.0" text="Ilość" />
+                                                <TextField fx:id="addCartProductQuantity" layoutX="406.0" layoutY="36.0" />
+                                                <Button mnemonicParsing="false" onAction="#addCartProductButtonOnAction" text="Dodaj" />
+                                                <Label fx:id="cartProductErrorLabel" text="Error label" textFill="RED" visible="false" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showCartTableOnAction" text="Baza">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="cartTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showCartProductTableOnAction" text="Koszyk - produkt baza">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="cartProductTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Zakup">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="225.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <tabs>
+                              <Tab text="Dodaj">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="880.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="390.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                             <children>
+                                                <Label layoutX="460.0" layoutY="71.0" text="ID produkt" />
+                                                <TextField fx:id="addPurchaseIdProduct" layoutX="406.0" layoutY="97.0" />
+                                                <Label text="ID klient" />
+                                                <TextField fx:id="addPurchaseIdClient" />
+                                                <Label layoutX="390.0" layoutY="10.0" text="ID kod rabatowy" />
+                                                <TextField fx:id="addPurchaseIdPromoCode" layoutX="346.0" layoutY="36.0" />
+                                                <Label layoutX="460.0" layoutY="71.0" text="ID pracownik" />
+                                                <TextField fx:id="addPurchaseIdEmployee" layoutX="406.0" layoutY="97.0" />
+                                                <Label layoutX="448.0" layoutY="193.0" text="Ilość" />
+                                                <TextField fx:id="addPurchaseQuantity" layoutX="406.0" layoutY="219.0" />
+                                                <Label layoutX="448.0" layoutY="289.0" text="Nr zamówienia" />
+                                                <TextField fx:id="addPurchaseOrderNum" layoutX="406.0" layoutY="315.0" />
+                                                <Label layoutX="442.0" layoutY="315.0" text="Data zakupu" />
+                                                <DatePicker fx:id="addPurchaseDate" />
+                                                <Button mnemonicParsing="false" onAction="#addPurchaseButtonOnAction" text="Dodaj" />
+                                                <Label fx:id="purchaseErrorLabel" text="Error label" textFill="RED" visible="false" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showPurchaseTableOnAction" text="Baza">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="purchaseTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showOrderTableOnAction" text="Zamówienia">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="orderTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab onSelectionChanged="#showHighestAmountOrderTableOnAction" text="Zamówienia o największej łącznej cenie przed opodatkowaniem">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="highestAmountOrderTable" layoutX="331.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="C1" />
+                                                <TableColumn prefWidth="75.0" text="C2" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

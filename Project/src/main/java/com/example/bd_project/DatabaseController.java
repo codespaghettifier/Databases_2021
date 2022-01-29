@@ -5,16 +5,23 @@ import java.util.ArrayList;
 
 public class DatabaseController
 {
-    private static final String URL = "jdbc:postgresql://localhost:5432/db_project";
-    private static final String USER = "db_project_role";
-    private static final String PASSWORD = "password";
+    private static String url = "jdbc:postgresql://localhost:5432/db_project";
+    private static String user = "db_project_role";
+    private static String password = "password";
     private Connection connection = null;
+
+    public static void setConnectionParams(String url, String user, String password)
+    {
+        DatabaseController.url = url;
+        DatabaseController.user = user;
+        DatabaseController.password = password;
+    }
 
     DatabaseController()
     {
         try
         {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            connection = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to db");
         }
         catch (SQLException exception)
@@ -519,6 +526,31 @@ public class DatabaseController
                 Date date = resultSet.getDate("data");
                 Purchase purchase = new Purchase(id, quantity, idProduct, idClient, idPromoCode, orderNum, idEmployee, date);
                 list.add(purchase);
+            }
+        }
+        catch (SQLException exception)
+        {
+            System.out.println(exception);
+        }
+        return list;
+    }
+
+    public ArrayList<SelectResultRecord> selectAllFromView(String view)
+    {
+        ArrayList<SelectResultRecord> list = new ArrayList<SelectResultRecord>();
+        try
+        {
+            PreparedStatement statement = connection.prepareCall("SELECT * FROM \"" + view + "\";", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet resultSet = statement.executeQuery();
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            while(resultSet.next())
+            {
+                SelectResultRecord record = new SelectResultRecord(columnCount);
+                for(int i = 0; i < columnCount; i++)
+                {
+                    record.addColumn(resultSet.getMetaData().getColumnName(i + 1), resultSet.getString(i + 1));
+                }
+                list.add(record);
             }
         }
         catch (SQLException exception)

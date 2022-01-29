@@ -14,6 +14,31 @@ products = ['bulbulator', 'błotnik do czołgu', 'kabel od internetu', 'kawa', '
 promo_codes = ['letmein', 'cheaperplease', 'gonnacallmanager', 'imkaren', 'glovoxd']
 vat_rate = [5, 8, 23]
 
+def replace_polish_characters(str):
+    def latin(character):
+        if character == 'ą':
+            return 'a'
+        elif character == 'ć':
+            return 'c'
+        elif character == 'ę':
+            return 'e'
+        elif character == 'ó':
+            return 'o'
+        elif character == 'ł':
+            return 'l'
+        elif character == 'ś':
+            return 's'
+        elif character == 'ż':
+            return 'z'
+        elif character == 'ź':
+            return 'z'
+        elif character == 'ń':
+            return 'n'
+        else:
+            return character
+
+    return ''.join([latin(c) for c in str])
+
 
 def generate_addresses(num_addresses):
     print("INSERT INTO db_project.adres (miejscowosc, kod_pocztowy, ulica, nr_budynku) VALUES")
@@ -26,12 +51,12 @@ def generate_addresses(num_addresses):
         print(f"('{city}', '{code}', '{street}', {building}){';' if i == num_addresses - 1 else ','}")
 
 
-def generate_vendors(num_vendors, num_addresses):
+def generate_vendors(num_addresses):
     print("INSERT INTO db_project.dostawca (nazwa, id_adres) VALUES")
-    for i in range(num_vendors):
-        name = vendor_names[random.randrange(0, len(vendor_names))]
+    for i in range(len(vendor_names)):
+        name = vendor_names[i]
         id_address = random.randrange(1, num_addresses)
-        print(f"('{name}', {id_address}){';' if i == num_vendors - 1 else ','}")
+        print(f"('{name}', {id_address}){';' if i == len(vendor_names) - 1 else ','}")
 
 
 def generate_clients(num_clients, num_addresses):
@@ -40,6 +65,7 @@ def generate_clients(num_clients, num_addresses):
         first = first_names[random.randrange(0, len(first_names))]
         last = last_names[random.randrange(0, len(last_names))]
         email = f"{last.lower()}@{email_domains[random.randrange(0, len(email_domains))]}"
+        email = replace_polish_characters(email)
         id_address = random.randrange(1, num_addresses)
         phone = ''.join([str(random.randrange(0, 10)) for _ in range(9)])
         print(f"('{first}', '{last}', {id_address}, '{email}', '{phone}'){';' if i == num_clients - 1 else ','}")
@@ -52,20 +78,21 @@ def generate_employees(num_employees, num_addresses):
         last = last_names[random.randrange(0, len(last_names))]
         role = employee_role[random.randrange(0, len(employee_role))]
         email = f"{last.lower()}@{email_domains[random.randrange(0, len(email_domains))]}"
+        email = replace_polish_characters(email)
         id_address = random.randrange(1, num_addresses)
         phone = ''.join([str(random.randrange(0, 10)) for _ in range(9)])
         account =  ''.join([str(random.randrange(0, 10)) for _ in range(26)])
         print(f"('{first}', '{last}', '{role}', {id_address}, '{email}', '{phone}', '{account}'){';' if i == num_employees - 1 else ','}")
 
 
-def generate_products(num_products, num_vendors):
+def generate_products(num_vendors):
     print("INSERT INTO db_project.produkt (nazwa, cena_bazowa, stawka_vat, id_dostawca) VALUES")
-    for i in range(num_products):
-        name = products[random.randrange(0, len(products))]
+    for i in range(len(products)):
+        name = products[i]
         price = random.randrange(0, 10000)
         vat = vat_rate[random.randrange(0, len(vat_rate))]
         vendor = random.randrange(1, num_vendors + 1)
-        print(f"('{name}', {price}, {vat}, {vendor}){';' if i == num_products - 1 else ','}")
+        print(f"('{name}', {price}, {vat}, {vendor}){';' if i == len(products) - 1 else ','}")
 
 
 def generate_availability(num_products):
@@ -84,7 +111,7 @@ def generate_promo_codes(num_employees):
         else:
             percent = 0
             amount = random.randrange(1, 10) * 10
-        code = promo_codes[random.randrange(0, len(promo_codes))]
+        code = promo_codes[i]
         limit = random.randrange(1, 1000)
         used = random.randrange(0, limit + 1)
         employee = random.randrange(1, num_employees + 1)
@@ -120,16 +147,16 @@ def generate_purchases(num_orders, num_products, num_clients, num_promo_codes, n
     first = True
     for order in range(1, num_orders + 1):
         purchased_products = []
+        client = random.randrange(1, num_clients + 1)
+        code = random.randrange(1, num_promo_codes + 1) if random.randrange(0, 2) else 'NULL'
+        employee = random.randrange(1, num_employees + 1)
+        time_min = datetime.strptime('01.01.2000', '%d.%m.%Y').timestamp()
+        time_max = datetime.strptime('01.01.2022', '%d.%m.%Y').timestamp()
+        timestamp = random.randrange(time_min, time_max)
+        date = datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d')
         for _ in range(random.randrange(1, 10)):
             product = random.randrange(1, num_products + 1)
             quantity = random.randrange(1, 43)
-            client = random.randrange(1, num_clients + 1)
-            code = random.randrange(1, num_promo_codes + 1) if random.randrange(0, 2) else 'NULL'
-            employee = random.randrange(1, num_employees + 1)
-            time_min = datetime.strptime('01.01.2000', '%d.%m.%Y').timestamp()
-            time_max = datetime.strptime('01.01.2022', '%d.%m.%Y').timestamp()
-            timestamp = random.randrange(time_min, time_max)
-            date = datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d')
             if product not in purchased_products:
                 purchased_products.append(product)
                 print(('' if first else ',\n') + f"({quantity}, {product}, {client}, {code}, {order}, {employee}, '{date}')", end='')
@@ -138,18 +165,18 @@ def generate_purchases(num_orders, num_products, num_clients, num_promo_codes, n
 
 
 def main():
-    num_addresses = 5
-    num_vendors = 5
-    num_clients = 5
-    num_employees = 5
-    num_products = 5
-    num_carts = 5
-    num_orders = 5
+    num_addresses = 70
+    num_vendors = len(vendor_names)
+    num_clients = 50
+    num_employees = 10
+    num_products = len(products)
+    num_carts = 25
+    num_orders = 420
 
     generate_addresses(num_addresses)
     print('')
 
-    generate_vendors(num_vendors, num_addresses)
+    generate_vendors(num_addresses)
     print('')
 
     generate_clients(num_clients, num_addresses)
@@ -158,7 +185,7 @@ def main():
     generate_employees(num_employees, num_addresses)
     print('')
 
-    generate_products(num_products, num_vendors)
+    generate_products(num_vendors)
     print('')
 
     generate_availability(num_products)

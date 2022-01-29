@@ -1,0 +1,11 @@
+tables:
+    pracownik
+    klient
+    produkt
+    kod_rabatowy
+    zakup
+    koszyk
+    sklep
+    dostawca
+    adres
+    stan_magazynowy

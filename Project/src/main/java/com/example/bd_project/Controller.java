@@ -199,6 +199,27 @@ public class Controller
     private TableView<Purchase> purchaseTable;
 
     @FXML
+    private TableView<SelectResultRecord> orderTable;
+
+    @FXML
+    private TableView<SelectResultRecord> promoAmountPerPromoCodeTable;
+
+    @FXML
+    private TableView<SelectResultRecord> highestAmountOrderTable;
+
+    @FXML
+    private TableView<SelectResultRecord> highestRevenueEmployeeTable;
+
+    @FXML
+    private TableView<SelectResultRecord> highestRevenueProductTable;
+
+    @FXML
+    private TableView<SelectResultRecord> taxByVATRateTable;
+
+    @FXML
+    private TableView<SelectResultRecord> neededASAPProductTable;
+
+    @FXML
     public void initialize()
     {
         db = new DatabaseController();
@@ -404,6 +425,48 @@ public class Controller
         populateTable(purchaseTable, new Purchase());
     }
 
+    @FXML
+    protected void showOrderTableOnAction()
+    {
+        populateTableWithView(orderTable, "zamowienie");
+    }
+
+    @FXML
+    protected void showPromoAmountPerPromoCodeTableOnAction()
+    {
+        populateTableWithView(promoAmountPerPromoCodeTable, "Łączna kwota uzielonych rabatów według kodu");
+    }
+
+    @FXML
+    protected void showHighestAmountOrderTableOnAction()
+    {
+        populateTableWithView(highestAmountOrderTable, "Zamówienia o największej łącznej kwocie przed vat");
+    }
+
+    @FXML
+    protected void showHighestRevenueEmployeeTableOnAction()
+    {
+        populateTableWithView(highestRevenueEmployeeTable, "Pracownicy według największej sprzedaży");
+    }
+
+    @FXML
+    protected void showHighestRevenueProductTableOnAction()
+    {
+        populateTableWithView(highestRevenueProductTable, "Produkty według wygenerowanego przychodu");
+    }
+
+    @FXML
+    protected void showTaxByVATRateTableOnAction()
+    {
+        populateTableWithView(taxByVATRateTable, "Podatek do zaplacenia wegług stawki VAT");
+    }
+
+    @FXML
+    protected void showNeededASAPProductTableOnAction()
+    {
+        populateTableWithView(neededASAPProductTable, "Produkty do zamówienia ASAP");
+    }
+
     private <T> void populateTable(TableView<T> tableView, TableElement instance)
     {
         ArrayList<T> list = (ArrayList<T>) db.selectAll(instance.getClass());
@@ -421,6 +484,32 @@ public class Controller
                 @Override
                 public ObservableValue<String> call(TableColumn.CellDataFeatures<T, String> features) {
                     return new SimpleStringProperty(((TableElement)features.getValue()).getColumn(c));
+                }
+            });
+            tableView.getColumns().add(column);
+        }
+    }
+
+    private void populateTableWithView(TableView<SelectResultRecord> tableView, String view)
+    {
+        ArrayList<SelectResultRecord> list = db.selectAllFromView(view);
+        if(list.isEmpty()) return;
+
+        SelectResultRecord instance = list.get(0);
+
+        ObservableList<SelectResultRecord> data = FXCollections.observableArrayList();
+        data.addAll(list);
+        tableView.setItems(data);
+
+        tableView.getColumns().clear();
+        for(int i = 0; i < instance.getColumnCount(); i++)
+        {
+            final int c = i;
+            TableColumn<SelectResultRecord, String> column = new TableColumn<SelectResultRecord, String>(instance.getColumnName(c));
+            column.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SelectResultRecord, String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<SelectResultRecord, String> features) {
+                    return new SimpleStringProperty(((SelectResultRecord)features.getValue()).getColumn(c));
                 }
             });
             tableView.getColumns().add(column);

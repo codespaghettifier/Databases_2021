@@ -21,6 +21,11 @@ public class BDProject extends Application
 
     public static void main(String[] args)
     {
+        String url = args.length >= 1 ? args[0] : "jdbc:postgresql://localhost:5432/db_project";
+        String user = args.length >= 2 ? args[0] : "db_project_role";
+        String password = args.length >= 3 ? args[0] : "password";
+        DatabaseController.setConnectionParams(url, user, password);
+
         launch();
     }
 }
